@@ -1,0 +1,31 @@
+# CACHING:
+
+/*.html
+    Cache-Control: max-age=300, public, immutable
+
+/*.css
+    Cache-Control: max-age=1209600, public, immutable
+
+/*.js
+    Cache-Control: max-age=1209600, public, immutable
+
+/media/
+    Cache-Control: max-age=604800000, public, immutable
+
+/icons/
+    Cache-Control: max-age=604800000, public, immutable
+
+
+
+# SECURITY:
+
+/*
+    Strict-Transport-Security: max-age=63072000; includeSubdomains; preload
+    Referrer-Policy: no-referrer
+    X-Content-Type-Options: nosniff
+    X-Frame-Options: SAMEORIGIN
+    Permissions-Policy: geolocation=(),midi=(),sync-xhr=(),microphone=(),camera=(),magnetometer=(),gyroscope=(),fullscreen=(self),payment=()
+    Content-Security-Policy: script-src 'self' 'unsafe-inline' *.cloudflare.com *.cloudflareinsights.com; frame-ancestors 'none';
+    Cross-Origin-Opener-Policy: same-origin
+    # Cross-Origin-Embedder-Policy: require-corp # These headers were really causing problems throughout the site
+    # Cross-Origin-Resource-Policy: cross-origin # Especially this one

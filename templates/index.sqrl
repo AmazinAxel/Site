@@ -1,0 +1,17 @@
+{{ it.header | safe }}
+ <div class="inset">
+    <h1>Hey!</h1>
+    <h2>I'm AmazinAxel, a full-stack web developer and programmer of things on the Internet.</h2>
+    <p>Welcome to my site! I like to <a href="https://alecshome.com">blog about things</a>, <a href="projects">make stuff on the Internet</a>, and <a href="https://boba.amazinaxel.com">drink bubble tea!</a> I'm very passionate about what I do and I love giving back to the Internet in the form of <a href="github">open-source projects.</a> 
+    I also <a href="swr">make a post every week</a> where I discuss what I've been working on. You can also look at my <a href="about-me#skills">skill proficency</a>, if you're into that.<br>
+    <strong>The posts below are my most recent announcements.</strong>
+ </div>
+ {{ @async each(it.posts) => post }}
+ <div class="padding-bottom card">
+    <h1>{{post.title}}</h1>
+    {{ post.content | safe }}
+    <div class="time"><img src="icons/clock.svg{{it.version}}" class="icon" alt="Clock icon"><p>{{post.date === 'Invalid Date' ? 'No Date' : post.date}}</p></div>
+    {{@if(post.badge)}}<div class="badge">{{post.badge}}</div>{{/if}}
+ </div>
+ {{/each}}
+{{ it.footer | safe }}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="{{@if (it.description) }}{{ it.description }}{{ #else }}My place on the Internet to share things about me, what I\'m working on, projects, and more!{{/if}}">
+    <title>AmazinAxel's Stuff - {{@if (it.title) }}{{ it.title }}{{ #else }}Home{{/if}}</title>
+    <meta name="color-scheme" content="dark light">
+    <link rel="stylesheet" href="/style.css{{ it.version }}">
+    <script src="/scripts.js{{ it.version }}"></script>
+  </head>
+  <body>
+    <div id="modeToggle" onclick="toggleMode()"><img src="/icons/unknown.svg{{ it.version }}" width="25px" height="25px" id="modeToggleIcon" alt="Dark / light mode theme switcher button icon"></div>
+    <div class="wrapper">
+      <header>
+        <h1 class="headtxt"><a href="/"><img src="/favicon.png" alt="AmazinAxel Logo">AmazinAxel</a></h1>
+        <div class="headerItems">
+            <a href="/" class="{{@if (!it.slug)}}selected{{/if}}"><img src="/icons/home{{@if(!it.slug)}}-selected{{/if}}.svg{{ it.version }}" alt="Homepage header icon"></a> 
+            <a href="https://alecshome.com" target="_blank"><img src="/icons/blog.svg{{ it.version }}" alt="Blog Posts header icon (external link)"><img src="/icons/link.svg{{ it.version }}" class="externalLink" alt="External link icon"></a>
+            <a href="/swr" class="{{@if (it.slug == "swr")}}selected{{/if}}"><img src="/icons/swr{{@if(it.slug == "swr")}}-selected{{/if}}.svg{{ it.version }}" alt="SWR Posts header icon"></a>
+            <div class="mobiledivider"></div>
+            <a href="/projects" class="{{@if(it.slug == "My Projects")}}selected{{/if}}"><img src="/icons/projects{{@if(it.slug == "My Projects")}}-selected{{/if}}.svg{{ it.version }}" alt="My Projects header icon"></a>
+            <a href="/about-me" class="{{@if(it.slug == "About Me")}}selected{{/if}}"><img src="/icons/about{{@if(it.slug == 'About Me')}}-selected{{/if}}.svg{{ it.version }}" alt="About Me header icon"></a>
+            <a href="/github" class="{{@if(it.slug == "GitHub")}}selected{{/if}}"><img class="github" src="/icons/github{{@if(it.slug == "GitHub")}}-selected{{/if}}.svg{{ it.version }}" alt="GitHub logo header icon"></a>
+          </div>
+    </header>
+  <div class="content"> 

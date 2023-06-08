@@ -1,0 +1,17 @@
+{
+  "name": "axelssg",
+  "type": "module",
+  "version": "1.4.0",
+  "description": "My custom static site generator for my personal website.",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ."
+  },
+  "author": "AmazinAxel (Alec)",
+  "license": "GPL",
+  "dependencies": {
+    "dayjs": "^1.11.7",
+    "marked": "^5.0.2",
+    "squirrelly": "^9.0.0"
+  }
+}

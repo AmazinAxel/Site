@@ -1,0 +1,8 @@
+# Don't keep the node_modules directory, this should be regenerated after an 'npm install'.
+node_modules/
+
+# Don't keep the generated files. These should only be generated at build time.
+public/*.html
+public/*.xml
+public/swr/
+public/archives/

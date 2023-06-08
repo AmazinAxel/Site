@@ -1,0 +1,6 @@
+{{ it.header | safe }}
+<h1>{{it.post.title}}</h1>
+
+{{it.body | safe }}
+ 
+{{ it.footer | safe }}

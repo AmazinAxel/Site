@@ -1,0 +1,16 @@
+{{ it.header | safe }}
+<div class="inset">
+ <h1>{{it.title}}</h1>
+ <p>{{it.description}}</p>
+</div>
+ <br>
+ {{@async each(it.items) => item, index}}
+ <a class="button small link" href="{{it.slug}}/{{item}}">
+ <h2>{{it.prefix}}{{item}} {{it.suffix}}</h2>
+ {{@if(index === 0)}}<h2 class="right">Current</h2>{{/if}}
+ {{@if(index === 1)}}<h2 class="right">1 Year Old</h2>{{/if}}
+ {{@if(index > 1)}}<h2 class="right">{{index}} Years Old</h2>{{/if}}
+ </a>
+ <br>
+ {{/each}}
+{{ it.footer | safe }}

@@ -1,0 +1,19 @@
+{{ it.header | safe }}
+<div class="inset">
+ <h1>{{it.prefix}}{{it.year}} {{it.suffix}}</h1>
+</div>
+ {{@async each(it.posts) => post}}
+ {{@if(it.customMeta)}}
+ <div class="card">
+ <h1>{{post.title}}</h1>
+ {{post.content | safe }}
+ <div class="time"><img src="/icons/clock.svg{{version}}" class="icon" alt="Clock icon"><p>{{post.date === 'Invalid Date' ? 'No Date' : post.date}}</p></div>
+ <div class="badge">{{post.badge}}</div>
+ </div>
+ {{#else}}
+ <div class="list card">
+ {{ post.content | safe }}
+ </div>
+ {{/if}}
+ {{/each}}
+{{ it.footer | safe }}

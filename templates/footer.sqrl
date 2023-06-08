@@ -1,0 +1,16 @@
+    <div class="bottom inset">
+        <div class="footerLinksGrid">
+          <a class="button footerLinksGrid-element" href="/archives">View Archives</a>
+          <a class="button footerLinksGrid-element" href="/swr">View SWR Posts</a>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>Copyright © AmazinAxel 2016 - {{ it.year }} • <a href="/privacy-policy">Privacy Policy</a>
+      <br>
+      <p class="small">Site last generated on {{ it.genDate }}</p>
+      <a href="/rss.xml" class="link"><img src="/icons/rss.svg{{ it.version }}" class="icon" alt="RSS footer icon">RSS</a>
+      <a href="/sitemap.xml" class="link"><img src="/icons/sitemap.svg{{ it.version }}" alt="Sitemap footer icon" class="icon">Sitemap</a>
+    </footer>
+  </body>
+</html>
