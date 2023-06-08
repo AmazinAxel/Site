@@ -5,7 +5,11 @@
  */
 
 // REMINDER: Make sure to make a new Alecshome logo, we're using the AmazinAxel logo currently
-
+// Add tag icon next to the "tag" text on a post
+/* Move github and projects page to AmazinAxel.com, change up About page to only show website info
+MAJOR CHORE: Clean up CSS, use more flexbox for footer, clean up JS, loop through CSS array, make needed blog posts on blog 
+Clean up this code! Migration to Squirrelly really messed up organization here. Clean up templates! Make new post on AlecsHome! 
+Remove contact form ENTIRELY. Move to AmazinAxel.com but leave note on AlecsHome. Move privacy policy to amazinaxel.com */
 import fs from 'fs'; // Filesystem dependency
 import { marked } from 'marked'; // Markdown parser
 import dayjs from 'dayjs'; // Main date & time converter
@@ -76,7 +80,6 @@ export async function getPosts(folder, isPage = null) {
 
 // Simply turns Markdown to HTML with preset settings
 export function markdownToHTML(markdown) { return marked(markdown, { mangle: false, headerIds: false }); } // Generate Markdown without warnings
-
 
 // Parses post and returns metadata (using gray-matter), body, and the slug
 export function parsePost(fileName, fileData, isPage) {
