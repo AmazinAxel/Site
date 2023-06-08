@@ -4,8 +4,7 @@
  * This program is licensed under the GPLv3.
  */
 
-// move amazinaxel.com site to alecshome
-// make amazinaxel.com a landing site
+// REMINDER: Make sure to make a new Alecshome logo, we're using the AmazinAxel logo currently
 
 import fs from 'fs'; // Filesystem dependency
 import { marked } from 'marked'; // Markdown parser
@@ -221,11 +220,11 @@ export async function buildAnnouncements(announcementsDir, publicAnnouncementsDi
 
     var rsscontent = `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>AmazinAxel's Latest Announcements</title>
+    <title>Alec's Latest Announcements</title>
     <link>${url}</link>
-    <description>The latest announcements from AmazinAxel.com!</description>
+    <description>The latest announcements from AlecsHome.com!</description>
     <language>en-US</language>
-    <copyright>Copyright ${year} AmazinAxel | All Rights Reserved.</copyright>
+    <copyright>Copyright ${year} AmazinAxel (Alec) | All Rights Reserved.</copyright>
     <atom:link href="https://${url}/rss.xml" rel="self" type="application/rss+xml"/>
 `; // Create RSS header and basic metadata
       

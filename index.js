@@ -12,7 +12,7 @@ const publicDir = 'public/'; // Pointer to the main content output directory
 const year = new Date().getFullYear(); // Get current year for the footer
 
 // Site URL for easily updating where the current live site should be
-if (typeof CF_PAGES_URL !== 'undefined') { var url = CF_PAGES_URL; } else { var url = "https://amazinaxel.com"; }
+if (typeof CF_PAGES_URL !== 'undefined') { var url = CF_PAGES_URL; } else { var url = "https://alecshome.com"; }
 
 global.year = year; // Footer year
 global.version = '?v1.4'; // Cache busting version, update after CSS or JS changes

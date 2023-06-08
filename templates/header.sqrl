@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="description" content="{{@if (it.description) }}{{ it.description }}{{ #else }}My place on the Internet to share things about me, what I\'m working on, projects, and more!{{/if}}">
-    <title>AmazinAxel's Stuff - {{@if (it.title) }}{{ it.title }}{{ #else }}Home{{/if}}</title>
+    <title>Alec's Home{{@if (it.title) }} - {{ it.title }}{{/if}}</title>
     <meta name="color-scheme" content="dark light">
     <link rel="stylesheet" href="/style.css{{ it.version }}">
     <script src="/scripts.js{{ it.version }}"></script>
