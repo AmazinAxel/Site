@@ -5,16 +5,14 @@
  */
 
 // REMINDER: Make sure to make a new Alecshome logo, we're using the AmazinAxel logo currently
-// Add tag icon next to the "tag" text on a post
 /* Move github and projects page to AmazinAxel.com, change up About page to only show website info
-MAJOR CHORE: Clean up CSS, use more flexbox for footer, clean up JS, loop through CSS array, make needed blog posts on blog 
-Clean up this code! Migration to Squirrelly really messed up organization here. Clean up templates! Make new post on AlecsHome! 
+MAJOR CHORE: Clean up CSS, use more flexbox for footer, clean up JS, loop through CSS array, make needed blog posts on blog; Make new post on AlecsHome!
 Remove contact form ENTIRELY. Move to AmazinAxel.com but leave note on AlecsHome. Move privacy policy to amazinaxel.com */
 import fs from 'fs'; // Filesystem dependency
 import { marked } from 'marked'; // Markdown parser
 import dayjs from 'dayjs'; // Main date & time converter
 import * as Sqrl from 'squirrelly'; // Templating engine
-Sqrl.defaultConfig.async = true;
+Sqrl.defaultConfig.async = true; // Set Squirrelly config to support async
 
 export const ordinal = (number) => { // Get time ordinal from number
   const suffix = ['th', 'st', 'nd', 'rd']; // Add ordinal suffixes to array
@@ -25,8 +23,7 @@ export const ordinal = (number) => { // Get time ordinal from number
 // Get all files within a directory that matches a file extension
 export async function getFiles(dirPath, fileExt) {
      const dirents = fs.readdirSync(dirPath, { withFileTypes: true });
-     return (
-       dirents
+     return ( dirents
          .filter(dirent => dirent.isFile() && dirent.name.endsWith(fileExt) && !dirent.name.includes('LICENSE')) // Get only the right files
          .map(dirent => dirent.name) // Return a list of file names
   );
@@ -34,27 +31,28 @@ export async function getFiles(dirPath, fileExt) {
 
 // Deletes all previously generated files from the public directory
 export async function purgePublicDir(dirPath, extensions) {
+  try { // Try catch statement to find errors while clearing the directory
   const files = await fs.promises.readdir(dirPath); // Get all files within the public directory
   const fileNames = files.filter(file => extensions.includes(file.split('.').pop())); // Get only the files matching the passed extensions
   const filesToRemove = fileNames.map(fileName => fs.unlinkSync(dirPath + fileName)); // Remove the files passing the passed extensions
   return Promise.all(filesToRemove); // Return after waiting for all files to be removed
+  } catch(err) { console.log('Error while purging the public directory: ' + err) }
 }
 
 export async function getFromTemplate(templatePath, postData) {
-  var header = await Sqrl.renderFile('./templates/header.sqrl', { 
+  var header = await Sqrl.renderFile('./templates/header.sqrl', { // Get Squirrelly header
     version: global.version, // Include cache busting version
     description: postData.description, // Include description for metadata
     title: postData.title, // Include title for metadata
     slug: postData.slug || postData.title // Include slug for header handling
   });
-  var footer = await Sqrl.renderFile('./templates/footer.sqrl', {
+  var footer = await Sqrl.renderFile('./templates/footer.sqrl', { // Get Squirrelly footer
     year: postData.year || global.year, // Include footer year if set by page, if not use current year
     version: global.version, // Include cache busting version
     genDate: global.genDate // Include footer generation date
    });
-  const allPostData = { ...postData, header, footer, version: global.version }
-  const template = await Sqrl.compile(fs.readFileSync(templatePath, 'utf-8'));
-  return await template(allPostData, Sqrl.defaultConfig) // Returns as fileData
+  const template = await Sqrl.compile(fs.readFileSync(templatePath, 'utf-8')); // Function for compiling the template
+  return await template({ ...postData, header, footer, version: global.version }, Sqrl.defaultConfig) // Return as fileData
 }
 
 export function basename(path) { return path.split('.')[0]; } // Simply splits the '.' in the path and returns the first part
@@ -62,10 +60,10 @@ export function basename(path) { return path.split('.')[0]; } // Simply splits t
 // Purge the entire directory of all files, regardless of the file extension
 // This method removes EVERY file within this directory without running any checks, thereby making it faster & more efficent than removeFiles()
 export function purgeDir(dirPath) {
-  try {
+  try { // Try catch statement to find errors while clearing the directory
       fs.mkdirSync(dirPath, {recursive: true}); // Make sure the directory exists
       fs.readdirSync(dirPath).forEach(file => { fs.rmSync(dirPath + file); }); // Remove each file in the directory
-  } catch (error) { console.log(error); }
+  } catch(err) { console.log(`Error while purging ${dirPath}: ` + err); }
 }
 
 // Get all posts & return post data 
@@ -74,7 +72,6 @@ export async function getPosts(folder, isPage = null) {
   const filesToRead = fileNames.map(fileName => fs.readFileSync(folder + fileName, 'utf-8')); // Read file data
 
   const fileData = await Promise.all(filesToRead); // Wait to finish reading files before moving on
-
   return fileNames.map((fileName, i) => parsePost(fileName, fileData[i], isPage)); // Return all post data with parsed content
 };
 
@@ -85,7 +82,7 @@ export function markdownToHTML(markdown) { return marked(markdown, { mangle: fal
 export function parsePost(fileName, fileData, isPage) {
   const slug = basename(fileName); // Get slug from filename
   
-  if (isPage) { return { body: fileData, slug }; } // Return just the body and slug
+  if (isPage) { return { body: fileData, slug }; } // Return just the body and slug if it's just a page
   const parsedData = fileData.split("|"); // Parse information split by |
   const title = parsedData[0]; // Get title from first object split by |
   const description = parsedData[1]; // Parse date
@@ -149,7 +146,7 @@ const createSplitFile = async (post, dirPath, prefix, suffix, customMeta, descri
     });
   }
   
-  fs.writeFileSync(dirPath + post.slug + '.html', fileData, 'utf-8');
+  fs.writeFileSync(dirPath + post.slug + '.html', fileData, 'utf-8'); // Save data to file
   return postObjects.length;
 };
 
@@ -166,11 +163,11 @@ export async function buildSWRPosts(swrDir, publicSWRDir, publicDir) {
     const items = []; // Initalize SWR item array
     for (let file of fileNames) { items.push(basename(file)); } // Add all SWR URLs to an array
     const fileData = await getFromTemplate('templates/list.sqrl', { // Generate template
-      items,
-      title: 'SWR Index',
+      items, // All SWR posts
+      title: "SWR Index", // Page title
       description: "Each week on Monday, I make a post about what I've done that past week. See my latest SWR (stuff wrap-up) posts here!",
-      prefix: "SWR",
-      slug: "swr",
+      prefix: "SWR", // Prefix to appear before SWR's
+      slug: "swr", // Include required page slug
       suffix: ""
     });
 
@@ -183,7 +180,7 @@ export async function buildSWRPosts(swrDir, publicSWRDir, publicDir) {
   // Create SWR post files
   for (const post of posts) { totalPosts += await createSplitFile(post, publicSWRDir, 'SWR', 'Posts', false, "SWR posts from " + post.slug + ". This is where I update visitors of what I've been working on."); }
 
-  await buildSWRIndex();
+  await buildSWRIndex(); // Build SWR index asynchronously
   console.log(`[AxelSSG] Finished building the SWR index and ${posts.length} SWR pages containing a total of ${totalPosts} SWR posts.`);
   return; // This is called as an async function so we should return
 }
@@ -258,12 +255,12 @@ export async function buildAnnouncements(announcementsDir, publicAnnouncementsDi
       for (let file of fileNames) { items.push(basename(file)); } // Add all the URLs to an array
   
       const fileData = await getFromTemplate('templates/list.sqrl', { // Generate Archives template
-        items,
-        title: 'Archives',
+        items, // Include all the item names as post years
+        title: 'Archives', // Page title
         description: "I've made many announcements over the years. See my archived & previous announcements here!",
-        prefix: '',
-        suffix: 'Announcements',
-        slug: "archives",
+        prefix: '', // There shouldn't be any prefix before the year
+        suffix: 'Announcements', // This will make it show up as something like '2020 Announcements'
+        slug: "archives", // Include necessary slug
       });
   
       fs.writeFileSync(publicDir + 'archives.html', fileData, 'utf-8'); // Push file

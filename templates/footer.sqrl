@@ -6,7 +6,7 @@
       </div>
     </div>
     <footer>
-      <p>Copyright © Alec <a href="https://amazinaxel.com">(AmazinAxel)</a> 2016 - {{ it.year }} • <a href="/privacy-policy">Privacy Policy</a>
+      <p>Copyright © Alec <a href="https://amazinaxel.com">(AmazinAxel)</a> 2016 - {{ it.year }} • <a href="//amazinaxel.com/privacy-policy">Privacy Policy</a>
       <br>
       <p class="small">Site last generated on {{ it.genDate }}</p>
       <a href="/rss.xml" class="link"><img src="/icons/rss.svg{{ it.version }}" class="icon" alt="RSS footer icon">RSS</a>

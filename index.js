@@ -17,7 +17,7 @@ if (typeof CF_PAGES_URL !== 'undefined') { var url = CF_PAGES_URL; } else { var 
 global.year = year; // Footer year
 global.version = '?v1.4'; // Cache busting version, update after CSS or JS changes
 // There might be problems with this being an hour ahead or behind (daylight savings)
-const currDate = dayjs();
+const currDate = dayjs(); // Initalize current day using Day.js
 global.genDate = `${currDate.format('dddd, MMMM')} ${utils.ordinal(currDate.date())}, ${currDate.format('YYYY [at] h:mm A')}`; // Include generation date
 
 // Turns HTML to markdown, generates a template, and saves the file
@@ -26,12 +26,12 @@ export const createPage = async (post, dirPath) => {
   const fileData = await utils.getFromTemplate('templates/page.sqrl', { // Render HTML
     post, // Contains all post metadata
     body: utils.markdownToHTML(post.body), // Turn content to markdown
-    year: global.year,
+    year: global.year, // Create the page using the global year
     version: global.version, // Include cache busting version
     genDate: global.genDate, // Include footer generation date
-    slug: post.title.trim(),
-    title: post.title,
-    description: post.description,
+    slug: post.title.trim(), // Remove the whitespace from the slug
+    title: post.title, // Include the page title from metadata
+    description: post.description, // Include the page description from metadata
   });
 
   fs.writeFileSync(dirPath + '/' + post.slug + '.html', fileData, 'utf-8'); // Save the file
