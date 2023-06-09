@@ -8,7 +8,15 @@
     "build": "node ."
   },
   "author": "AmazinAxel (Alec)",
-  "license": "GPL",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/AmazinAxel/Site/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmazinAxel/Site.git"
+  },
+  "homepage": "https://alecshome.com",
   "dependencies": {
     "dayjs": "^1.11.7",
     "marked": "^5.0.2",

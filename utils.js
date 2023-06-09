@@ -7,7 +7,7 @@
 // REMINDER: Make sure to make a new Alecshome logo, we're using the AmazinAxel logo currently
 /* Move github and projects page to AmazinAxel.com, change up About page to only show website info
 MAJOR CHORE: Clean up CSS, use more flexbox for footer, clean up JS, loop through CSS array, make needed blog posts on blog; Make new post on AlecsHome!
-Remove contact form ENTIRELY. Move to AmazinAxel.com but leave note on AlecsHome. Move privacy policy to amazinaxel.com */
+Move contact form to AmazinAxel.com but leave note on AlecsHome. Move privacy policy to amazinaxel.com */
 import fs from 'fs'; // Filesystem dependency
 import { marked } from 'marked'; // Markdown parser
 import dayjs from 'dayjs'; // Main date & time converter

@@ -9,72 +9,46 @@
    I really need help with this...  */
 
 /* Light theme */
-@media (prefers-color-scheme: light) {
-    :root {
-        /* IMPORTANT: When changing this, you must update this in the scripts.js file too! */
-        --background-color: #f4f8fb;
-        --wrapper-shadow1: #e0e0e0;
-        --bright: #fff;
-        --border-highlight: #ebebeb;
-        --headeritem-Shadow: #d1d1d1;
-        --dark-gray: #404040;
-        --lighter-gray: #707070;
-        --very-light: #efefef;
-        --linkedCard-hover: #d3d3d3;
-        --complimentary: #000; 
-        --footer-genDate: #565656;
-        --inset: #f9f9f9;
-        --inset-border: #e7e7e7;
-        --shadow: #e3e3e3;
-        --card: #fff;
-        --tooltip: #f6f6f6;
-    }
-    @property --headeritem-gradient1 {
-        syntax: '<color>';
-        initial-value: #f4f4f4;
-        inherits: false;
-    }
-
-    @property --headeritem-gradient2 {
-        syntax: '<color>';
-        initial-value: #f6f6f6;
-        inherits: false;
-    }
+:root.light-mode {
+    --background-color: #f4f8fb;
+    --wrapper-shadow1: #e0e0e0;
+    --bright: #fff;
+    --border-highlight: #ebebeb;
+    --headeritem-Shadow: #d1d1d1;
+    --dark-gray: #404040;
+    --lighter-gray: #707070;
+    --very-light: #efefef;
+    --linkedCard-hover: #d3d3d3;
+    --complimentary: #000; 
+    --footer-genDate: #565656;
+    --inset: #f9f9f9;
+    --inset-border: #e7e7e7;
+    --shadow: #e3e3e3;
+    --card: #fff;
+    --tooltip: #f6f6f6;
+    --headeritem: #f2f2f2;
 }
 
 /* Dark theme */
-@media (prefers-color-scheme: dark) {
-    :root {
-        /* IMPORTANT: When changing this, you must update this in the scripts.js file too! */
-        --background-color: #1b1d1e;
-        --wrapper-shadow1: #070707;
-        --bright: #1d1d1d;
-        --border-highlight: #292929;
-        --headeritem-Shadow: #4d4c4c;
-        --dark-gray: #969696;
-        --lighter-gray: #757575;
-        --very-light: #0e0e0e;
-        --linkedCard-hover: #303030;
-        --complimentary: #fff; 
-        --footer-genDate: #747474;
-        --inset: #202020;
-        --inset-border: #353535;
-        --shadow: #181818;
-        --card: #292929;
-        --progress: #fff;
-        --tooltip: #2e2e2e;
-    }
-    @property --headeritem-gradient1 {
-        syntax: '<color>';
-        initial-value: #3f3e3e;
-        inherits: false;
-    }
-
-    @property --headeritem-gradient2 {
-        syntax: '<color>';
-        initial-value: #2e2e2e;
-        inherits: false;
-    }
+:root.dark-mode {
+    --background-color: #1b1d1e;
+    --wrapper-shadow1: #070707;
+    --bright: #1d1d1d;
+    --border-highlight: #292929;
+    --headeritem-Shadow: #4d4c4c;
+    --dark-gray: #969696;
+    --lighter-gray: #757575;
+    --very-light: #0e0e0e;
+    --linkedCard-hover: #303030;
+    --complimentary: #fff; 
+    --footer-genDate: #747474;
+    --inset: #202020;
+    --inset-border: #353535;
+    --shadow: #181818;
+    --card: #232323;
+    --progress: #fff;
+    --tooltip: #2e2e2e;
+    --headeritem: #2e2e2e;
 }
 
 body { 
@@ -86,16 +60,15 @@ body {
     overflow-x: clip;
 }
 
-/* Don't add anything above this or else it will glitch out the JS! */
 .headerItems a:not(.selected):before {
     content: "";
-    background-image: linear-gradient(17deg, var(--headeritem-gradient1) 0%, var(--headeritem-gradient2) 100%);
+    background: var(--headeritem);
     box-shadow: 0 0 8px 0 var(--headeritem-Shadow);
     display: block;
     position: relative;
     margin-left: -10px;
     z-index: 1;
-    transition: scale .3s cubic-bezier(0, 1.4, 0.5, 1.3), box-shadow .3s cubic-bezier(0, 1.4, 0.5, 1.3), --headeritem-gradient1 .2s ease, --headeritem-gradient2 .2s ease;
+    transition: scale .3s cubic-bezier(0, 1.4, 0.5, 1.3), box-shadow .3s cubic-bezier(0, 1.4, 0.5, 1.3), background .2s ease;
     height: 55px;
     width: 55px;
     top: 20px;
@@ -200,9 +173,8 @@ a.selected:before {
 a.selected:hover::before { box-shadow: 0 0 15px 1px #60c5dd; }
 
 header {
-    top: -1px;
     position: sticky;
-    top: -2px;
+    top: 10px;
     background-color: var(--bright);
     box-shadow: 8px 14px 38px var(--wrapper-shadow1), 1px 3px 8px var(--very-light);
     border-radius: 10px;
