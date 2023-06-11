@@ -2,9 +2,9 @@
  <div class="inset">
     <h1>Hey!</h1>
     <h2>I'm Alec (also known as <a href="https://amazinaxel.com">AmazinAxel</a> online), a full-stack web developer and programmer of things on the Internet.</h2>
-    <p>Welcome to my site! I like to <a href="https://alecshome.com">blog about things</a>, <a href="projects">make stuff on the Internet</a>, and <a href="https://boba.amazinaxel.com">drink bubble tea!</a> I'm very passionate about what I do and I love giving back to the Internet in the form of <a href="github">open-source projects.</a> 
-    I also <a href="swr">make a post every week</a> where I discuss what I've been working on. You can also look at my <a href="about-me#skills">skill proficency</a>, if you're into that.<br>
-    <strong>The posts below are my most recent announcements.</strong>
+    <p>Welcome to my personal site, or home on the Internet! I like to <a href="https://alecshome.com">blog about things</a>, <a href="projects">make stuff on the Internet</a>, and <a href="https://boba.amazinaxel.com">drink bubble tea!</a> I'm very passionate about what I do and I love giving back to the Internet in the form of <a href="github">open-source projects.</a> 
+    I also <a href="swr">make a post every week</a> where I discuss what I've been working on. I use this site mainly for blogging about myself, so you'll see things like my latest announcements and project updates here.<br>
+    <strong>The posts below are my most recent announcements.</strong> My <a href="archives">archives</a> contains all my past announcements, if you're into that.
  </div>
  {{ @async each(it.posts) => post }}
  <div class="padding-bottom card">

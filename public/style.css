@@ -4,12 +4,12 @@
  * This program is licensed under the GPLv3.
  */
 
-/* This CSS is literally a mess. I need to organize, comment, and clean this all up
-   For now, if you're modifying this, just delete pretty much everything. It's all broken and super unmaintainable...
-   I really need help with this...  */
+/* This CSS is a complete mess. I need to organize, comment, and clean this all up. This CSS was made in a rush...
+   I definitely have not gotten close to an acceptable level of optimization for this CSS, I recommend you just copy
+   the variable names and then just rewrite this entire stylesheet. It's very broken and unmaintainable.  */
 
-/* Light theme */
-:root.light-mode {
+
+:root.light-mode { /* Light theme */
     --background-color: #f4f8fb;
     --wrapper-shadow1: #e0e0e0;
     --bright: #fff;
@@ -29,8 +29,7 @@
     --headeritem: #f2f2f2;
 }
 
-/* Dark theme */
-:root.dark-mode {
+:root.dark-mode { /* Dark theme */
     --background-color: #1b1d1e;
     --wrapper-shadow1: #070707;
     --bright: #1d1d1d;
@@ -51,15 +50,19 @@
     --headeritem: #2e2e2e;
 }
 
-body { 
+body { /* Default document styles */
     margin: 25px auto;
     max-width: 1000px;
     background: var(--background-color);
     overflow-y: scroll;
     transition: background .2s ease;
-    overflow-x: clip;
+    overflow-x: hidden;
+    line-height: 1; 
+    -webkit-font-smoothing: antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
+/* Header styling */
 .headerItems a:not(.selected):before {
     content: "";
     background: var(--headeritem);
@@ -243,71 +246,43 @@ img:not(.icon):not(.headerItems img):not(#modeToggleIcon):not(header img) {
   
 
 .wrapper { /* min-height: calc(100vh - 50px); */
-padding: 25px 25px 0 25px;
-background-color: var(--bright); 
-box-shadow: 8px 14px 38px var(--wrapper-shadow1), 1px 3px 8px var(--very-light);
-border-radius: 5px;
-transition: background-color .2s ease, box-shadow .2s ease;
+    padding: 25px 25px 0 25px;
+    background-color: var(--bright); 
+    box-shadow: 8px 14px 38px var(--wrapper-shadow1), 1px 3px 8px var(--very-light);
+    border-radius: 5px;
+    transition: background-color .2s ease, box-shadow .2s ease;
 }
+hr { margin-top: 5px; }
 
-footer {
-    padding: 10px;
-    margin-top: 10px;
-}
+/* Footer Styling (fully cleaned up) */
+
+footer { padding: 10px; margin-top: 10px; }
 footer p { line-height: 1em; }
 
 footer a, footer .link { color: var(--dark-gray); transition: color .2s ease; text-decoration: none; }
 footer a:hover { color: var(--complimentary); text-decoration: underline; }
 footer a:active { color: var(--lighter-gray); }
-hr { margin-top: 5px; }
 footer .small { 
     color: var(--footer-genDate);
     font-size: 14px;
     margin-top: -8px; 
     transition: color .2s ease;
+    flex: 80%;
 }
 footer a.link:not(.button) { color: #7f7f7f; }
 
-footer .link { /* TODO: Change the entire footer to a flexbox layout instead of this spaghetti code */
-    display: flex; 
-    justify-content: flex-end; 
-    align-items: center; 
-    float: right;
-    color: var(--complimentary);
-    transition: color .2s ease;
-    margin-left: 5px;
-    margin-top: -49px;
-    width: 26px;
-    margin-left: 45px;
-    column-gap: 2px;
-    top: 3px;
-    position: relative;
-}
+.footer-bottom { display: flex; gap: 10px; }
+
+footer a.link { display: flex; align-items: center; position: relative; top: -23px; gap: 2px; padding: 0; }
 
 @media(max-width: 700px) {
-    footer .link:nth-child(4), footer .link:nth-child(3) { 
-        position: unset; 
-        margin-top: -50px; 
-    }
-    footer p { padding-bottom: 20px; }
-    footer p:first-child { padding-bottom: 0; }
-    footer .small { width: calc(75% - 40px); }
+    footer a.link { flex-direction: unset; top: 0; padding: 0 0 10px 0; }
+    .footer-bottom { display: block; }
+    footer a.link:last-child { float: right; position: relative; top: -31px; }
 }
 
-@media(max-width: 530px) {
-    footer .link:nth-child(4), footer .link:nth-child(3) { 
-        position: unset; 
-        margin-top: -25px; 
-        margin-top: -65px;
-        flex-direction: column; 
-    }
-}
 
-.grid-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0 15px;
-}
+.grid-container { display: flex; flex-wrap: wrap; gap: 0 15px; }
 .grid-container > .card { flex: 40%; }
 
 
@@ -463,7 +438,7 @@ button.button { cursor: pointer; border: 0; width: 15%; min-width: max-content; 
 .large.button { display: block; margin-bottom: 20px; }
 .large.button:hover { scale: 1.01; }
 .large.button:active { scale: 0.97; }
-.large.button.margin { margin: 0; margin-top: 20px; }
+.large.button.margin { margin: 20px 0 -15px 0; }
 
 
 .right { 
@@ -480,7 +455,7 @@ button.button { cursor: pointer; border: 0; width: 15%; min-width: max-content; 
 }
 
 @media(max-width: 1100px) {
-    #modeToggle { right: -5px; left: unset; }
+    #modeToggle { right: 0; left: unset; border-radius: 10px 0 0 10px; }
     #modeToggleIcon { margin-left: 3px; }
 }
 
@@ -603,44 +578,22 @@ li > a:active { font-size: 17px; }
 
 /* Reset all styles (mostly minifed) */
 html { box-sizing: border-box; }
-*, *::before, *::after { box-sizing: inherit; }
-:root { -moz-tab-size: 4; tab-size: 4; }
-html { line-height: 1.15;  -webkit-text-size-adjust: 100%;  text-size-adjust: 100%; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; }
+*, *::before, *::after { box-sizing: inherit; } /* Forces box-sizing to border-box */
 hr { height: 0; }
-abbr[title] { text-decoration: underline dotted; }
-b, strong { font-weight: bolder; }
-code, kbd, samp, pre { font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;font-size: 1em; color: var(--complimentary); }
-small { font-size: 80%; }
+code, kbd, samp, pre { font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 1em; color: var(--complimentary); transition: color .2s ease; }
 sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
 sub { bottom: -0.25em; }
 sup { top: -0.5em; }
 button, input, select, textarea { font-family: inherit; font-size: 100%; line-height: 1.15; }
 button, select { text-transform: none; }
-button, [type='button'], [type='reset'], [type='submit'] { -webkit-appearance: button; appearance: button; }
-button::-moz-focus-inner, [type='button']::-moz-focus-inner, [type='reset']::-moz-focus-inner, [type='submit']::-moz-focus-inner { border-style: none; padding: 0; }
-button:-moz-focusring, [type='button']:-moz-focusring, [type='reset']:-moz-focusring, [type='submit']:-moz-focusring { outline: 1px dotted ButtonText; }
-fieldset { padding: 0.35em 0.75em 0.625em; }
-legend { padding: 0; }
-progress { vertical-align: baseline; }
-[type='number']::-webkit-inner-spin-button, [type='number']::-webkit-outer-spin-button { height: auto; }
-[type='search'] { -webkit-appearance: textfield; appearance: textfield; outline-offset: -2px; }
-[type='search']::-webkit-search-decoration { -webkit-appearance: none; }
-*, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
-body { line-height: 1; -webkit-font-smoothing: antialiased; }
-img, picture, video, canvas, svg { display: block; max-width: 100%; }
+img, video { display: block; max-width: 100%; }
 p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; color: var(--complimentary); transition: color .2s ease; }
-#root, #__next { isolation: isolate; }
 
-/* Scrollbar + text selection styles */
+/* Scrollbar & text selection styles */
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-corner { background: var(--background-color); }
 ::-webkit-scrollbar-track { background: var(--background-color); border-radius: 10px; }
-::-webkit-scrollbar-thumb {
-  background: var(--bright);
-  border-radius: 4px;
-  box-shadow: 0 1px 3px 0 var(--shadow);
-}
+::-webkit-scrollbar-thumb { background: var(--bright); border-radius: 4px; box-shadow: 0 1px 3px 0 var(--shadow); }
 ::selection { background-color: rgba(25,170,214,1); color: var(--bright);  }
