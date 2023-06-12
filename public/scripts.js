@@ -4,13 +4,13 @@
  * This program is licensed under the GPLv3.
  */
 
-// -- Dark mode == false < ~|~ > Light theme == true -- //
+// -- Dark mode = true < ~|~ > Light theme = false -- //
 
 const doc = document.documentElement; // Document shorthand
 let mode = localStorage.getItem("mode"); // Get mode from device local storage
 (mode === null) ? // Change theme based on device
-mode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches: // If dark mode, change theme
-mode = (mode === 'true'); // Convert to a boolean
+    mode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches: // If dark mode, change theme
+    mode = (mode === 'true'); // Convert to boolean
 
 function setMode() { // Toggle between dark & light mode
     if (mode) { doc.classList.add('light-mode'); doc.classList.remove('dark-mode'); }
@@ -18,7 +18,7 @@ function setMode() { // Toggle between dark & light mode
     localStorage.setItem("mode", mode); // Set current mode
 }
 
-function updIcon() { 
+function updIcon() { // Update the button icon
     if (mode == true) { modeToggle.src = '/icons/dark-mode.svg'; modeToggle.classList.remove('dark'); }
     else { modeToggle.src = '/icons/light-mode.svg'; modeToggle.classList.add('dark'); }
 }
@@ -27,6 +27,6 @@ function toggleMode() { mode = !mode; setMode(); updIcon(); } // Toggle mode
 
 setMode(); // Set mode immediately before page load to stop the flashing of the wrong theme
 window.onload = function() { 
-    modeToggle = document.getElementById('modeToggleIcon'); 
+    modeToggle = document.getElementById('modeToggleIcon'); // Fix bug, add modeToggle shorthand
     updIcon(); 
 }

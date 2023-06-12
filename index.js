@@ -18,7 +18,7 @@ global.year = year; // Footer year
 global.version = '?v1.4'; // Cache busting version, update after CSS or JS changes
 // There might be problems with this being an hour ahead or behind (daylight savings)
 const currDate = dayjs(); // Initalize current day using Day.js
-global.genDate = `${currDate.format('dddd, MMMM')} ${utils.ordinal(currDate.date())}, ${currDate.format('YYYY [at] h:mm A')}.`; // Include generation date
+global.genDate = `${currDate.format('dddd, MMMM')} ${utils.ordinal(currDate.date())}, ${currDate.format('YYYY [at] h:mm A')}`; // Include generation date
 
 // Turns HTML to markdown, generates a template, and saves the file
 
