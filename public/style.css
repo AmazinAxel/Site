@@ -536,4 +536,4 @@ p, h1, h2, h3, h4, h5, h6, span { overflow-wrap: break-word; color: var(--compli
 ::-webkit-scrollbar-corner { background: var(--background-color); }
 ::-webkit-scrollbar-track { background: var(--background-color); border-radius: 10px; }
 ::-webkit-scrollbar-thumb { background: var(--bright); border-radius: 4px; box-shadow: 0 1px 3px 0 var(--shadow); }
-::selection { background-color: rgba(25,170,214,1); color: var(--bright);  }
+::selection { background-color: rgba(25,170,214,1); color: #fff; }
