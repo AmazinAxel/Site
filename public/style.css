@@ -9,7 +9,7 @@
    the variable names and then just rewrite this entire stylesheet. It's very broken and unmaintainable.  */
 
 
-:root.light-mode { /* Light theme */
+:root { /* Light theme (default) */
     --background-color: #f4f8fb;
     --wrapper-shadow1: #e0e0e0;
     --bright: #fff;
@@ -181,15 +181,15 @@ header {
     .headerItems .externalLink { top: 107px; }
 }
 
-/* Misc post styling */
+/* Misc post styling (fully cleaned up) */
 
 h1 { margin: 20px; font-size: 2em; }
 h2 { margin: 20px; }
 span, p { margin-bottom: 15px; line-height: 1.4; font-size: 1.1em; }
 
 a:not(.button):not(.card) { color: var(--complimentary); transition: color .2s ease, font-size .1s ease, padding-left .1s ease, margin-left .1s ease; }  
-a:not(.button):not(.card):hover { color: var(--dark-gray); }
-a:not(.button):not(.card):active { color: var(--lighter-gray); }
+a:not(.button):not(.card):not(.headtxt a):hover { color: var(--dark-gray); }
+a:not(.button):not(.card):not(.headtxt a):active { color: var(--lighter-gray); }
 
 img:not(.icon):not(.headerItems img):not(#modeToggleIcon):not(header img) {
     border-radius: 10px;
@@ -206,7 +206,6 @@ img:not(.icon):not(.headerItems img):not(#modeToggleIcon):not(header img) {
 
 footer { padding: 10px; margin-top: 10px; }
 footer p { line-height: 1em; }
-
 footer a, footer .link { color: var(--dark-gray); transition: color .2s ease; text-decoration: none; }
 footer a:hover { color: var(--complimentary); text-decoration: underline; }
 footer a:active { color: var(--lighter-gray); }
@@ -221,14 +220,14 @@ footer a.link:not(.button) { color: #7f7f7f; }
 .footer-bottom { display: flex; gap: 10px; }
 footer a.link { display: flex; align-items: center; position: relative; top: -23px; gap: 2px; padding: 0; }
 
+.grid-container { display: flex; flex-wrap: wrap; gap: 0 15px; }
+.grid-container > .card { flex: 40%; }
+
 @media(max-width: 700px) {
     footer a.link { flex-direction: unset; top: 0; padding: 0 0 10px 0; }
     .footer-bottom { display: block; }
     footer a.link:last-child { float: right; position: relative; top: -31px; }
 }
-
-.grid-container { display: flex; flex-wrap: wrap; gap: 0 15px; }
-.grid-container > .card { flex: 40%; }
 
 /* Various card styling */
 
@@ -328,6 +327,7 @@ img.icon { width: 20px; bottom: -1px; position: relative; } /* OCD really messin
     box-shadow: 0 0 10px 0 #60c5dd;
     scale: 1.4;
 }
+.hidden { display: none; }
 
 iframe { border: 0; }
 

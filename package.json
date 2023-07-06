@@ -18,8 +18,8 @@
   },
   "homepage": "https://alecshome.com",
   "dependencies": {
-    "dayjs": "^1.11.7",
-    "marked": "^5.0.2",
+    "dayjs": "^1.11.8",
+    "marked": "^5.1.0",
     "squirrelly": "^9.0.0"
   }
 }

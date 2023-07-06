@@ -101,8 +101,8 @@ export async function generateSitemap(url, publicDir) {
 
   // Just a nice little comment for visitors checking out the sitemap 
   sitemapContent = sitemapContent + `</urlset>
-<!--   If you are a human visitor, you should probably head back to my homepage over at ${url}   -->
-<!--                 This page is intended for robots to help index my site so I can improve my SEO.                 -->`;
+<!--   If you are a human visitor, you should probably head back to my homepage over at ${url}.   -->
+<!--                           This page is intended for robots to help index my site.                           -->`;
 
   fs.writeFileSync(publicDir + '/sitemap.xml', sitemapContent, 'utf-8'); // Save file
 

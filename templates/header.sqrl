@@ -10,7 +10,7 @@
     <script src="/scripts.js{{ it.version }}"></script>
   </head>
   <body>
-    <div id="modeToggle" onclick="toggleMode()"><img src="/icons/unknown.svg{{ it.version }}" width="25px" height="25px" id="modeToggleIcon" alt="Dark / light mode theme switcher button icon" title="Toggle theme"></div>
+    <div id="modeToggle" class="hidden" onclick="toggleMode()"><img src="/icons/unknown.svg{{ it.version }}" width="25px" height="25px" id="modeToggleIcon" alt="Dark / light mode theme switcher button icon" title="Toggle theme"></div>
     <div class="wrapper">
       <header>
         <h1 class="headtxt"><a href="/"><img src="/favicon.png" alt="Alec's Home Logo" title="Alec's Home Logo">Alec's Home</a></h1>

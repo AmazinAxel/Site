@@ -4,7 +4,7 @@
  * This program is licensed under the GPLv3.
  */
 
-// -- Dark mode = true < ~|~ > Light theme = false -- //
+// Dark theme = true, light theme = false
 
 const doc = document.documentElement; // Document shorthand
 let mode = localStorage.getItem("mode"); // Get mode from device local storage
@@ -13,8 +13,7 @@ let mode = localStorage.getItem("mode"); // Get mode from device local storage
     mode = (mode === 'true'); // Convert to boolean
 
 function setMode() { // Toggle between dark & light mode
-    if (mode) { doc.classList.add('light-mode'); doc.classList.remove('dark-mode'); }
-    else { doc.classList.add('dark-mode'); doc.classList.remove('light-mode'); }
+    (mode) ? doc.classList.remove('dark-mode'): doc.classList.add('dark-mode'); // Handle toggling
     localStorage.setItem("mode", mode); // Set current mode
 }
 
@@ -28,5 +27,6 @@ function toggleMode() { mode = !mode; setMode(); updIcon(); } // Toggle mode
 setMode(); // Set mode immediately before page load to stop the flashing of the wrong theme
 window.onload = function() { 
     modeToggle = document.getElementById('modeToggleIcon'); // Fix bug, add modeToggle shorthand
+    document.getElementById('modeToggle').classList.remove('hidden'); // Show mode toggle button
     updIcon(); 
 }
